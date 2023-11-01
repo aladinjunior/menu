@@ -3,6 +3,8 @@ package com.aladin.menu.main.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.aladin.menu.adapters.MainAdapter
 import com.aladin.menu.data.repository.MealRepositoryImplementation
 import com.aladin.menu.data.rest.MealAPI
 import com.aladin.menu.databinding.ActivityMainBinding
@@ -18,19 +20,32 @@ class MainActivity : AppCompatActivity() {
     private val mealApi = MealAPI.getInstance()
 
     private lateinit var viewModel: MainViewModel
+    private lateinit var adapter: MainAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
 
+        adapter = MainAdapter()
         viewModel = ViewModelProvider(
             this,
             MainViewModelFactory(MealRepositoryImplementation(mealApi))
         )[MainViewModel::class.java]
+
+        binding.recyclerview.adapter = adapter
+        binding.recyclerview.layoutManager = LinearLayoutManager(this)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        viewModel.mealList.observe(this){ meals->
+            adapter.setMealList(meals)
+        }
     }
 
     override fun onResume() {
         super.onResume()
         viewModel.getAllMeals()
+
     }
 }

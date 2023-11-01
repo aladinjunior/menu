@@ -5,10 +5,27 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.aladin.menu.data.model.Meal
 import com.aladin.menu.databinding.ListMealItemBinding
+import com.squareup.picasso.Picasso
 
 class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
-    private var meals = mutableListOf<Meal>()
+    private var meals: MutableList<Meal> = mutableListOf()
+
+    fun setMealList(newMeals: List<Meal>) {
+        meals.clear()
+        meals.addAll(newMeals)
+        notifyItemsChanged(meals.size, newMeals.size)
+    }
+
+    private fun notifyItemsChanged(oldSize: Int, newSize: Int){
+        if (oldSize == 0){
+            notifyDataSetChanged()
+        } else {
+            notifyItemRangeRemoved(0, oldSize)
+            notifyItemRangeInserted(0, newSize)
+        }
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -24,8 +41,12 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
         return meals.size
     }
 
-    inner class ViewHolder(binding: ListMealItemBinding) : RecyclerView.ViewHolder(binding.root){
+    inner class ViewHolder(private val binding: ListMealItemBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(meal: Meal){
+            with(binding){
+                Picasso.get().load(meal.strMealThumb).into(foodThumbnail)
+                foodName.text = meal.strMeal
+            }
 
         }
     }
