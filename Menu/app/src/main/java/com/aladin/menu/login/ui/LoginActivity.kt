@@ -2,13 +2,13 @@ package com.aladin.menu.login.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.aladin.menu.databinding.ActivityLoginBinding
 import com.aladin.menu.login.viewmodel.LoginViewModel
 import com.aladin.menu.login.viewmodel.LoginViewModelFactory
 import com.aladin.menu.main.ui.MainActivity
+import com.aladin.menu.util.Watcher
 
 class LoginActivity : AppCompatActivity() {
 
@@ -42,9 +42,30 @@ class LoginActivity : AppCompatActivity() {
         }
 
         viewModel.errorMessageLiveData.observe(this) { message ->
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+            handleFormErrors(message)
+
         }
     }
+
+    private fun handleFormErrors(message: String){
+        with(binding){
+
+            val emptyName = name.text.toString().isEmpty()
+            val emptyPhone = phone.text.toString().isEmpty()
+
+            nameInputLayout.error = if (emptyName) message else null
+            phoneInputLayout.error = if (emptyPhone) message else null
+
+            name.addTextChangedListener(Watcher {
+                 nameInputLayout.error = null
+            })
+
+            phone.addTextChangedListener(Watcher {
+                 phoneInputLayout.error = null
+            })
+        }
+    }
+
 
     private fun goToMainScreen() {
         val i = Intent(this, MainActivity::class.java)

@@ -13,11 +13,17 @@ class LoginViewModel : ViewModel() {
     val errorMessageLiveData: LiveData<String> = errorMessage
 
     fun validateAndGoToMainScreen(name: String, phone: String) {
-        if (name.isNotEmpty() && phone.isNotEmpty() && phone.length == 11) {
-            isValidForm.postValue(true)
-        } else {
-            isValidForm.postValue(false)
-            errorMessage.postValue("Nenhum campo pode ser vazio!")
+        when {
+            name.isEmpty() -> {
+                errorMessage.postValue("name can't be empty.")
+                isValidForm.postValue(false)
+            }
+            phone.isEmpty() -> {
+                errorMessage.postValue("phone can't be empty.")
+                isValidForm.postValue(false)
+            }
+            else -> isValidForm.postValue(true)
+
         }
     }
 
