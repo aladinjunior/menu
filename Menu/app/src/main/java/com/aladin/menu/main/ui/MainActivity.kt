@@ -47,5 +47,6 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         viewModel.getAllMeals()
 
+
     }
 }

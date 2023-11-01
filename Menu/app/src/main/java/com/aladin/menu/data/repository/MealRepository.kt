@@ -6,4 +6,6 @@ interface MealRepository {
 
     suspend fun getAllMeals() : Meals
 
+    suspend fun getMealDesc(id: Int) : Meals
+
 }

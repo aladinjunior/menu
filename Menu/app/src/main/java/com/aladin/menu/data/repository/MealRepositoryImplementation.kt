@@ -9,4 +9,8 @@ class MealRepositoryImplementation(private val mealAPI: MealAPI) : MealRepositor
     override suspend fun getAllMeals(): Meals {
         return mealAPI.getMealList()
     }
+
+    override suspend fun getMealDesc(id: Int): Meals {
+        return mealAPI.getMealDesc(id)
+    }
 }

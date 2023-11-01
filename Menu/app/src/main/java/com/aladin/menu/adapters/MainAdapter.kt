@@ -44,8 +44,9 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
     inner class ViewHolder(private val binding: ListMealItemBinding) : RecyclerView.ViewHolder(binding.root){
         fun bind(meal: Meal){
             with(binding){
-                Picasso.get().load(meal.strMealThumb).into(foodThumbnail)
-                foodName.text = meal.strMeal
+                Picasso.get().load(meal.strMealThumb).into(mealThumbnail)
+                mealName.text = meal.strMeal
+                mealDescription.text = meal.strInstructions
             }
 
         }
