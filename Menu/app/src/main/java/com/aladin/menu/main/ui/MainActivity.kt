@@ -2,8 +2,10 @@ package com.aladin.menu.main.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.aladin.menu.R
 import com.aladin.menu.adapters.MainAdapter
 import com.aladin.menu.data.repository.MealRepositoryImplementation
 import com.aladin.menu.data.rest.MealAPI
@@ -25,6 +27,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.title = ""
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         adapter = MainAdapter()
         viewModel = ViewModelProvider(
@@ -48,5 +55,10 @@ class MainActivity : AppCompatActivity() {
         viewModel.getAllMeals()
 
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        return super.onCreateOptionsMenu(menu)
     }
 }
