@@ -35,7 +35,6 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         binding = FragmentMainBinding.bind(view)
         adapter = MainAdapter{ id ->
             detailedListener?.goToDetailedScreen(id)
-            Toast.makeText(requireContext(), id.toString(), Toast.LENGTH_SHORT).show()
 
         }
 
@@ -61,6 +60,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     override fun onResume() {
         super.onResume()
         viewModel.getAllMeals()
+
 
     }
 

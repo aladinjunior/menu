@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aladin.menu.R
@@ -41,6 +42,11 @@ class MainActivity : AppCompatActivity(), MainFragment.DetailedListener {
 
     override fun goToDetailedScreen(id: Int) {
         val fragment = MealDetailedFragment()
+        fragment.arguments = bundleOf(MEAL_ID to id)
         startFragment(fragment)
+    }
+
+    companion object {
+        const val MEAL_ID = "meal_id"
     }
 }

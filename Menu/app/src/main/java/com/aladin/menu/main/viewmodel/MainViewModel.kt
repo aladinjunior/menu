@@ -26,14 +26,14 @@ class MainViewModel(private val mealRepository: MealRepository) : ViewModel() {
                 } else {
                     mealList.postValue(meals)
 
-                     meals.map { meal ->
+                    meals.map { meal ->
                         val id = meal.idMeal
                         viewModelScope.async {
                             try {
                                 val mealsWithDesc = mealRepository.getMealDesc(id)
                                 mealsWithDesc.meals.forEach { apiMeal ->
                                     mealList.value?.forEach { meal ->
-                                        if (meal.idMeal == apiMeal.idMeal){
+                                        if (meal.idMeal == apiMeal.idMeal) {
                                             meal.strInstructions = apiMeal.strInstructions
                                         }
                                     }
@@ -49,9 +49,8 @@ class MainViewModel(private val mealRepository: MealRepository) : ViewModel() {
             } catch (e: Exception) {
                 errorMessage.postValue("Error: ${e.message}")
             }
-        }}
-
-
+        }
+    }
 
 
 }

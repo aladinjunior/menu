@@ -8,4 +8,8 @@
     <string name="search">search</string>
     <string name="meals">Meals</string>
     <string name="order_now">Order Now</string>
+    <string name="id">id : %1$d</string>
+    <string name="category">category : %1$s</string>
+    <string name="area">area : %1$s</string>
+    <string name="tags">tags : %1$s</string>
 </resources>

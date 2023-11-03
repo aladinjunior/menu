@@ -69,7 +69,12 @@ class LoginActivity : AppCompatActivity() {
 
     private fun goToMainScreen() {
         val i = Intent(this, MainActivity::class.java)
+           
         startActivity(i)
+    }
+
+    companion object {
+        const val PHONE = "phone"
     }
 
 }
