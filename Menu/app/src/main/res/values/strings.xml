@@ -6,4 +6,6 @@
     <string name="food_name">Food Name Here</string>
     <string name="food_description">food description here</string>
     <string name="search">search</string>
+    <string name="meals">Meals</string>
+    <string name="order_now">Order Now</string>
 </resources>

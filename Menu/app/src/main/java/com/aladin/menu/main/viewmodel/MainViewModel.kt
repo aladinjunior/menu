@@ -15,6 +15,7 @@ class MainViewModel(private val mealRepository: MealRepository) : ViewModel() {
     val errorMessage = MutableLiveData<String>()
 
     fun getAllMeals(): Job {
+
         return viewModelScope.launch {
             try {
                 val mealResponse = mealRepository.getAllMeals()

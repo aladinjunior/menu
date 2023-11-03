@@ -7,7 +7,7 @@ import com.aladin.menu.data.model.Meal
 import com.aladin.menu.databinding.ListMealItemBinding
 import com.squareup.picasso.Picasso
 
-class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
+class MainAdapter(private val onClick: (Int) -> Unit) : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
 
     private var meals: MutableList<Meal> = mutableListOf()
 
@@ -47,6 +47,10 @@ class MainAdapter : RecyclerView.Adapter<MainAdapter.ViewHolder>() {
                 Picasso.get().load(meal.strMealThumb).into(mealThumbnail)
                 mealName.text = meal.strMeal
                 mealDescription.text = meal.strInstructions
+            }
+
+            itemView.setOnClickListener {
+                onClick(meal.idMeal)
             }
 
         }
