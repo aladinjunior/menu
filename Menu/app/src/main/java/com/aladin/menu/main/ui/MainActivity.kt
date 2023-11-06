@@ -13,6 +13,7 @@ import com.aladin.menu.data.repository.MealRepositoryImplementation
 import com.aladin.menu.data.rest.MealAPI
 import com.aladin.menu.databinding.ActivityMainBinding
 import com.aladin.menu.detailed.ui.MealDetailedFragment
+import com.aladin.menu.login.ui.LoginActivity.Companion.PHONE
 import com.aladin.menu.main.viewmodel.MainViewModel
 import com.aladin.menu.main.viewmodel.MainViewModelFactory
 import com.aladin.menu.util.startFragment
@@ -23,6 +24,7 @@ class MainActivity : AppCompatActivity(), MainFragment.DetailedListener {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
+    private lateinit var phone: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +33,7 @@ class MainActivity : AppCompatActivity(), MainFragment.DetailedListener {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.title = ""
 
+        phone = intent?.extras?.getString(PHONE) ?: "empty phone"
         startFragment(MainFragment())
 
     }
@@ -42,7 +45,7 @@ class MainActivity : AppCompatActivity(), MainFragment.DetailedListener {
 
     override fun goToDetailedScreen(id: Int) {
         val fragment = MealDetailedFragment()
-        fragment.arguments = bundleOf(MEAL_ID to id)
+        fragment.arguments = bundleOf(MEAL_ID to id, PHONE to phone)
         startFragment(fragment)
     }
 

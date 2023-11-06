@@ -13,6 +13,7 @@ import com.aladin.menu.data.rest.MealAPI
 import com.aladin.menu.databinding.DetailedMealFragmentBinding
 import com.aladin.menu.detailed.viewmodel.DetailedViewModelFactory
 import com.aladin.menu.detailed.viewmodel.MealDetailedViewModel
+import com.aladin.menu.login.ui.LoginActivity.Companion.PHONE
 import com.aladin.menu.main.ui.MainActivity.Companion.MEAL_ID
 import com.squareup.picasso.Picasso
 import java.lang.IllegalStateException
@@ -21,14 +22,18 @@ class MealDetailedFragment : Fragment(R.layout.detailed_meal_fragment) {
 
     private var binding: DetailedMealFragmentBinding? = null
     private lateinit var viewModel: MealDetailedViewModel
+    private lateinit var phone: String
+
 
     private var id: Int? = null
-
     private val mealAPI = MealAPI.getInstance()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
+
+
         id = arguments?.getInt(MEAL_ID)
+        phone = arguments?.getString(PHONE) ?: "empty phone"
 
         binding = DetailedMealFragmentBinding.bind(view)
         viewModel = ViewModelProvider(
@@ -37,17 +42,21 @@ class MealDetailedFragment : Fragment(R.layout.detailed_meal_fragment) {
         )[MealDetailedViewModel::class.java]
         super.onViewCreated(view, savedInstanceState)
 
-        binding?.order?.setOnClickListener {
-            goToWhatsapp()
-        }
+
     }
 
     override fun onStart() {
-        super.onStart()
 
-        viewModel.detailedMealList.observe(this){ meals ->
-            meals.meals.map { meal ->
+        super.onStart()
+        viewModel.detailedMealList.observe(this){ mealList ->
+            mealList.meals.map {meal ->
                 loadMealInfo(meal)
+                val formattedMealName = meal.strMeal.replace(" ", "%20")
+                val link = "$BASE_URL$phone?text=$formattedMealName"
+                binding?.rate?.visibility = View.VISIBLE
+                binding?.order?.setOnClickListener {
+                    openWhatsapp(link)
+                }
             }
         }
     }
@@ -74,10 +83,14 @@ class MealDetailedFragment : Fragment(R.layout.detailed_meal_fragment) {
 
     }
 
-    private fun goToWhatsapp(link: String){
+    private fun openWhatsapp(link: String){
         val i = Intent(Intent.ACTION_VIEW, Uri.parse(link))
         startActivity(i)
 
+    }
+
+    companion object {
+        const val BASE_URL = "https://wa.me/55"
     }
 
 
