@@ -17,6 +17,11 @@ class MainAdapter(private val onClick: (Int) -> Unit) : RecyclerView.Adapter<Mai
         notifyItemsChanged(meals.size, newMeals.size)
     }
 
+    fun setFilteredList(list: List<Meal>) {
+        this.meals = list.toMutableList()
+        notifyDataSetChanged()
+    }
+
     private fun notifyItemsChanged(oldSize: Int, newSize: Int){
         if (oldSize == 0){
             notifyDataSetChanged()

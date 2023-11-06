@@ -3,7 +3,6 @@ package com.aladin.menu.login.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.os.bundleOf
 import androidx.lifecycle.ViewModelProvider
 import com.aladin.menu.databinding.ActivityLoginBinding
 import com.aladin.menu.login.viewmodel.LoginViewModel
@@ -72,7 +71,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun goToMainScreen() {
         val i = Intent(this, MainActivity::class.java)
-            i.putExtra(PHONE, binding.phone.text.toString())
+            .putExtra(PHONE, binding.phone.text.toString())
         startActivity(i)
     }
 
