@@ -3,6 +3,9 @@
     <style name="Base.Theme.Menu" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:statusBarColor">@color/green_darker</item>
         <item name="colorPrimary">@color/white</item>
+        <item name="android:editTextColor">@color/white</item>
+        <item name="colorSecondary">@color/white</item>
+
 
 
 

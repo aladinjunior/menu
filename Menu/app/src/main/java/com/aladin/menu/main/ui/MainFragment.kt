@@ -113,7 +113,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
     }
 
-    
+
     interface DetailedListener {
         fun goToDetailedScreen(id: Int)
     }
