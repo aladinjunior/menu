@@ -3,9 +3,12 @@ package com.aladin.menu.login.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.aladin.menu.business.usecase.OnSignInUseCase
 
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel(
+    private val onSignInUseCase: OnSignInUseCase
+) : ViewModel() {
 
     private val isValidForm = MutableLiveData<Boolean>()
     val isValidFormLiveData: LiveData<Boolean> = isValidForm

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Menu</string>
-    <string name="insert_your_name">"Name "</string>
-    <string name="insert_your_phone">Phone </string>
+    <string name="username">"Usuário"</string>
+    <string name="password">Senha</string>
     <string name="login">Login</string>
     <string name="food_name">Food Name Here</string>
     <string name="food_description">food description here</string>
