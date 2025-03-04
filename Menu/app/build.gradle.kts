@@ -57,6 +57,8 @@ dependencies {
     //ViewModel
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.0-alpha02")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.0-alpha02")
+    implementation("androidx.fragment:fragment-testing:1.8.6")
+    implementation("androidx.test.espresso:espresso-intents:3.6.1")
 
 
     testImplementation("junit:junit:4.13.2")

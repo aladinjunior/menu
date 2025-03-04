@@ -7,13 +7,13 @@ import java.lang.IllegalStateException
 
 class LoginViewModelFactory : ViewModelProvider.Factory {
 
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-       return if (modelClass.isAssignableFrom(LoginViewModel::class.java)){
-            LoginViewModel() as T
-        } else {
-            throw IllegalStateException("ViewModel not found")
-        }
-
-    }
+//    override fun <T : ViewModel> create(modelClass: Class<T>): T {
+//       return if (modelClass.isAssignableFrom(LoginViewModel::class.java)){
+//            LoginViewModel() as T
+//        } else {
+//            throw IllegalStateException("ViewModel not found")
+//        }
+//
+//    }
 
 }

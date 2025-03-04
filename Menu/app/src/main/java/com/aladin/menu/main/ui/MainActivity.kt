@@ -6,7 +6,6 @@ import android.os.Bundle
 import androidx.core.os.bundleOf
 import com.aladin.menu.databinding.ActivityMainBinding
 import com.aladin.menu.detailed.ui.MealDetailedFragment
-import com.aladin.menu.login.ui.LoginActivity.Companion.PHONE
 import com.aladin.menu.util.startFragment
 
 class MainActivity : AppCompatActivity(), MainFragment.DetailedListener {
@@ -24,14 +23,14 @@ class MainActivity : AppCompatActivity(), MainFragment.DetailedListener {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.title = ""
 
-        phone = intent?.extras?.getString(PHONE) ?: "empty phone"
-        startFragment(MainFragment())
+//        phone = intent?.extras?.getString(PHONE) ?: "empty phone"
+//        startFragment(MainFragment())
 
     }
 
     override fun goToDetailedScreen(id: Int) {
         val fragment = MealDetailedFragment()
-        fragment.arguments = bundleOf(MEAL_ID to id, PHONE to phone)
+//        fragment.arguments = bundleOf(MEAL_ID to id, PHONE to phone)
         startFragment(fragment)
     }
 

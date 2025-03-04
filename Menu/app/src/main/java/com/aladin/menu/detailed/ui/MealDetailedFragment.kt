@@ -13,7 +13,7 @@ import com.aladin.menu.data.rest.MealAPI
 import com.aladin.menu.databinding.DetailedMealFragmentBinding
 import com.aladin.menu.detailed.viewmodel.DetailedViewModelFactory
 import com.aladin.menu.detailed.viewmodel.MealDetailedViewModel
-import com.aladin.menu.login.ui.LoginActivity.Companion.PHONE
+//import com.aladin.menu.login.ui.LoginActivity.Companion.PHONE
 import com.aladin.menu.main.ui.MainActivity.Companion.MEAL_ID
 import com.squareup.picasso.Picasso
 import java.lang.IllegalStateException
@@ -33,7 +33,7 @@ class MealDetailedFragment : Fragment(R.layout.detailed_meal_fragment) {
 
 
         id = arguments?.getInt(MEAL_ID)
-        phone = arguments?.getString(PHONE) ?: "empty phone"
+//        phone = arguments?.getString(PHONE) ?: "empty phone"
 
         binding = DetailedMealFragmentBinding.bind(view)
         viewModel = ViewModelProvider(
